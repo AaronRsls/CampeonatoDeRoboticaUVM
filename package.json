@@ -1,0 +1,14 @@
+{
+  "name": "camp.uvm",
+  "version": "1.0.0",
+  "description": "Sistema para el evento Campeonato de Robótica UVM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aaron Rosales, Alexander Méndez, José Adrian Barrios",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
