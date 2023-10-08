@@ -11,15 +11,15 @@ let categoriaDB = [
 },
 {
     nombre: "Seguidor de línea",
-    id: "201"
+    id: "201",
 },
 {
     nombre: "Recolección de objetos",
-    id: "209"
+    id: "209",
 },
 {
     nombre: "Estudia el el problema y presenta un prototipo que represente el problema y la solución",
-    id: "78"
+    id: "78",
 }
 ];
 
