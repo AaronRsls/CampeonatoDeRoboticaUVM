@@ -4,13 +4,16 @@ let equipoDB = [
 {
     nombre: "Carvajal",
     id: "50",
+    categoría: "Sumo"
 },
 {   nombre: "Valera",
     id: "62",
+    categoría: "Seguidor de línea"
 },
 {
     nombre: "Trujillo",
-    id: "81"
+    id: "81",
+    categoría: "Estudia el el problema y presenta un prototipo que represente el problema y la solución"
 }
 ];
 
