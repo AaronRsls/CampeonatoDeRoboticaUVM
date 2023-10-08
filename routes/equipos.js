@@ -21,7 +21,7 @@ router.post('/', function(req, res, next) {
 
 /* PUT equipos listing. */
 router.put('/:id', function(req, res, next) {
-  res.send(equiposController.modificar(req.params.id, req.body.equipos));
+  res.send(equiposController.modificar(req.params.id, req.body.equipo));
 });
 
 router.delete('/:id', function(req, res, next) {
