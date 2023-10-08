@@ -10,12 +10,6 @@ class modalidadesController {
     crear(modalidad) {
         modalidadModels.crear(modalidad);
     }
-    modificar(id, nuevaModalidad) {
-        return modalidadModels.modificar(id, nuevaModalidad);
-    }
-    eliminar(id) {
-        return modalidadModels.eliminar(id);
-    }
 };
 
 module.exports = new modalidadesController();

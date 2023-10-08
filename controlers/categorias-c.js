@@ -1,7 +1,7 @@
 var categoriaModels = require('../models/categoriasModels'); 
 
 class categoriasController {
-    todos () {
+    todos() {
         return categoriaModels.todos();
     }
     uno(id) {

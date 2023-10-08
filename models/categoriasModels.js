@@ -8,6 +8,7 @@ let categoriaDB = [
 {   
     nombre: "Incapacidad",
     id: "221",
+
 },
 {
     nombre: "Seguidor de línea",
@@ -36,7 +37,7 @@ class categoriaModels{
     //Crear
     crear(categoria){
         categoria.id = uuidv4();
-        categoriaDB.push(categoria)
+        categoriaDB.push(categoria);
     }
     //Modificar
     modificar(id, nuevaCategoria){

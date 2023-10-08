@@ -18,12 +18,11 @@ router.post('/', function(req, res, next) {
     categoriasController.crear(req.body)
   res.send(categoriasController.todos());
 });
-
 /* PUT categorias listing. */
 router.put('/:id', function(req, res, next) {
-  res.send(categoriasController.modificar(req.params.id, req.body.categoria));
+  res.send(categoriasController.modificar(req.params.id, req.body.nombre));
 });
-
+/* DELETE categorias listing. */
 router.delete('/:id', function(req, res, next) {
   res.send(categoriasController.eliminar(req.params.id));
 });

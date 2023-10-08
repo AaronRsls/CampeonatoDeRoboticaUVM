@@ -30,10 +30,10 @@ class equipoModels{
         equipoDB.push(equipo)
     }
     //Modificar
-    modificar(id, nuevoEquipo){
+    modificar(id, nuevoNombre){
         const equipo = equipoDB.find (equipo => equipo.id === id);
         if (equipo) {
-        equipo.nombre = nuevoEquipo;
+        equipo.nombre = nuevoNombre;
         return equipoDB;
     }
     }

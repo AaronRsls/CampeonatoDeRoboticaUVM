@@ -21,26 +21,13 @@ class modalidadModels{
     }
     //Buscar por ID
     buscarID(id){
-       const modalidadid = modalidadDB.find (modalidad => modalidad.id === id);
-       return modalidadid
-    }
+        const modalidadid = modalidadDB.find (modalidad => modalidad.id === id);
+        return modalidadid
+     }
     //Crear
     crear(modalidad){
         modalidad.id = uuidv4();
         modalidadDB.push(modalidad)
-    }
-    //Modificar
-    modificar(id, nuevaModalidad){
-        const modalidad = modalidadDB.find (modalidad => modalidad.id === id);
-        if (modalidad) {
-        modalidad.nombre = nuevaModalidad;
-        return modalidadDB;
-    }
-    }
-    //Eliminar
-    eliminar(id){
-        const modalidadEliminada = modalidadDB.filter (modalidad => modalidad.id !== id);
-        return modalidadEliminada;
     }
 };
 module.exports = new modalidadModels();
