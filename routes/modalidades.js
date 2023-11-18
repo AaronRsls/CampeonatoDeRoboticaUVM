@@ -3,29 +3,29 @@ var router = express.Router();
 var modalidadesController = require('../controlers/modalidades-c')
 
 /* GET modalidades listing. */
-router.get('/', function(req, res, next) {
-  res.send(modalidadesController.todos());
+router.get('/', async function(req, res, next) {
+  res.send(await modalidadesController.todos());
 });
 
 /* GET modalidades listing by id. */
-router.get('/:id', function(req, res, next) {
+router.get('/:id', async function(req, res, next) {
   let id= req.params.id;
-  res.send(modalidadesController.uno(id));
+  res.send(await modalidadesController.uno(id));
 });
 
 /* POST modalidades listing. */
-router.post('/', function(req, res, next) {
-    modalidadesController.crear(req.body)
-  res.send(modalidadesController.todos());
+router.post('/', async function(req, res, next) {
+    res.send(await modalidadesController.crear(req.body));
+//  res.send(await modalidadesController.todos());
 });
 
 /* PUT modalidades listing. */
-router.put('/:id', function(req, res, next) {
-  res.send(modalidadesController.modificar(req.params.id, req.body.modalidad));
+router.put('/:id', async function(req, res, next) {
+  res.send(await modalidadesController.modificar(req.params.id, req.body.nombre_mod));
 });
 
-router.delete('/:id', function(req, res, next) {
-  res.send(modalidadesController.eliminar(req.params.id));
+router.delete('/:id', async function(req, res, next) {
+  res.send(await modalidadesController.eliminar(req.params.id));
 });
 
 module.exports = router;
