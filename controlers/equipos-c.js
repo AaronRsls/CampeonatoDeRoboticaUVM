@@ -1,20 +1,20 @@
 var equipoModels = require('../models/equiposModels'); 
 
 class equiposController {
-    todos () {
-        return equipoModels.todos();
+    async todos () {
+        return await equipoModels.todos();
     }
-    uno(id) {
-        return equipoModels.buscarID(id);
+    async uno(id) {
+        return await equipoModels.buscarID(id);
     }
-    crear(equipo) {
-        equipoModels.crear(equipo);
+    async crear(equipo) {
+        return await equipoModels.crear(equipo);
     }
-    modificar(id, nuevoEquipo) {
-        return equipoModels.modificar(id, nuevoEquipo);
+    async modificar(id, nuevoEquipo) {
+        return await equipoModels.modificar(id, nuevoEquipo);
     }
-    eliminar(id) {
-        return equipoModels.eliminar(id);
+    async eliminar(id) {
+        return await equipoModels.eliminar(id);
     }
 };
 
