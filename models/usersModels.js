@@ -1,46 +1,75 @@
-const { v4: uuidv4 } = require('uuid');
-
-let usersDB = [
-{
-    nombre: "José",
-    id: "123",
-},
-{   nombre: "Aaron",
-    id: "456",
-},
-{
-    nombre: "Alexander",
-    id: "189",
-}
-];
+//const { v4: uuidv4 } = require('uuid');
+const database = require("../db/db");
 
 class UsersModels{
     //Buscar todos
-    todos(){
-       return usersDB;
+    async todos(){
+        try{
+            const connection = await database.getConnection();
+            const result = await connection.query("SELECT * from usersdb");
+            return result;
+        } catch(error){
+            return ("Error en la consulta.....");
+        }
     }
     //Buscar por ID
-    buscarID(id){
-       const usuarioid = usersDB.find (usuario => usuario.id === id);
-       return usuarioid
+     async buscarID(id){
+       try {
+            const connection = await database.getConnection();
+            const result = await connection.query("SELECT * FROM usersdb WHERE id = ?", id);
+            if (result.length==0){
+                return ("Usuario no Encontrado....");
+            }
+            return result;
+
+        } catch (error) {
+            return ("Error en la consulta.....");
+        }
     }
     //Crear
-    crear(usuario){
-        usuario.id = uuidv4();
-        usersDB.push(usuario)
+    async crear(usuario){
+        try {
+            //const id = uuidv4();
+            //const id=usuario.id;
+            const nombre = usuario.nombre;
+            const datos ={nombre};
+            if (nombre === undefined ) {
+                return ("Nombre requerido..." );
+            }
+            const connection = await database.getConnection();
+            await connection.query("INSERT INTO usersdb SET ?", datos);
+            return ("Usuario ingresado con exito...");
+        } catch (error) {
+            return ("Error en la consulta.....");
+        }
     }
     //Modificar
-    modificar(id, nuevoNombre){
-        const usuario = usersDB.find (usuario => usuario.id === id);
-        if (usuario) {
-        usuario.nombre = nuevoNombre;
-        return usersDB;
+    async modificar(id, nuevoNombre){
+        try {
+            if (id === undefined || nuevoNombre === undefined) {
+                return ("Datos Incompletos.." );
+            }
+            //const datos = {nuevoNombre};
+            const connection = await database.getConnection();
+            const result = await connection.query("UPDATE usersdb SET nombre= ? WHERE id = ?", [nuevoNombre,id]);
+            return result;
+        } catch (error) {
+            return ("Error en la consulta.....");
+        }
     }
-    }
+
     //Eliminar
-    eliminar(id){
-        const usuarioEliminado = usersDB.filter (usuario => usuario.id !== id);
-        return usuarioEliminado;
+    async eliminar(id){
+        try {
+            const connection = await database.getConnection();
+            const result = await connection.query("DELETE FROM usersdb WHERE id = ?", id);
+            if (result.affectedRows==0){
+                return ("Usuario no Encontrado....");
+            }
+            return result;
+        } catch (error) {
+            return ("Error en la consulta.....");
+        }
     }
 };
 

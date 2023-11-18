@@ -1,20 +1,20 @@
 var usersModels = require('../models/usersModels'); 
 
 class usuariosController {
-    todos () {
-        return usersModels.todos();
+    async todos () {
+        return await usersModels.todos();
     }
-    uno(id) {
-        return usersModels.buscarID(id);
+    async uno(id) {
+        return await usersModels.buscarID(id);
     }
-    crear(usuario) {
-        usersModels.crear(usuario);
+    async crear(usuario) {
+        return await usersModels.crear(usuario);
     }
-    modificar(id, nuevoNombre) {
-        return usersModels.modificar(id, nuevoNombre);
+    async modificar(id, nuevoNombre) {
+        return await usersModels.modificar(id, nuevoNombre);
     }
-    eliminar(id) {
-        return usersModels.eliminar(id);
+    async eliminar(id) {
+        return await usersModels.eliminar(id);
     }
 };
 
