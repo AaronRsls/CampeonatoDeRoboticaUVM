@@ -1,20 +1,20 @@
 var categoriaModels = require('../models/categoriasModels'); 
 
 class categoriasController {
-    todos() {
-        return categoriaModels.todos();
+    async todos() {
+        return await categoriaModels.todos();
     }
-    uno(id) {
-        return categoriaModels.buscarID(id);
+    async uno(id) {
+        return await categoriaModels.buscarID(id);
     }
-    crear(categoria) {
-       categoriaModels.crear(categoria);
+    async crear(categoria) {
+       return await categoriaModels.crear(categoria);
     }
-    modificar(id, nuevaCategoria) {
-        return categoriaModels.modificar(id, nuevaCategoria);
+    async modificar(id, nuevaCategoria) {
+        return await categoriaModels.modificar(id, nuevaCategoria);
     }
-    eliminar(id) {
-        return categoriaModels.eliminar(id);
+    async eliminar(id) {
+        return await categoriaModels.eliminar(id);
     }
 };
 
