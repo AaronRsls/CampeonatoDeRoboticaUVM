@@ -1,49 +1,75 @@
 const { v4: uuidv4 } = require('uuid');
-
-let equipoDB = [
-{
-    nombre: "Carvajal",
-    id: "50",
-    categoría: "Sumo"
-},
-{   nombre: "Valera",
-    id: "62",
-    categoría: "Seguidor de línea"
-},
-{
-    nombre: "Trujillo",
-    id: "81",
-    categoría: "Estudia el el problema y presenta un prototipo que represente el problema y la solución"
-}
-];
+const database = require("../db/db");
 
 class equipoModels{
     //Buscar todos
-    todos(){
-       return equipoDB;
+    async todos(){
+        try{
+            const connection = await database.getConnection();
+            const result = await connection.query("SELECT * from equipos");
+            return result;
+        } catch(error){
+            return ("Error en la consulta.....");
+        }
     }
     //Buscar por ID
-    buscarID(id){
-       const equipoid = equipoDB.find (equipo => equipo.id === id);
-       return equipoid
+     async buscarID(id){
+       try {
+            const connection = await database.getConnection();
+            const result = await connection.query("SELECT * FROM equipos WHERE id_equipo = ?", id);
+            if (result.length==0){
+                return ("Equipo no Existe....");
+            }
+            return result;
+        } catch (error) {
+            return ("Error en la consulta.....");
+        }
     }
     //Crear
-    crear(equipo){
-        equipo.id = uuidv4();
-        equipoDB.push(equipo)
+    async crear(nuevoEquipo){
+        try {
+            //const id = uuidv4();
+            //const id=nuevaModalidad.id;
+            const nombre_equipo = nuevoEquipo.nombre_equipo;
+            const datos ={nombre_equipo};
+            if (nombre_equipo === undefined ) {
+                return ("Nombre requerido..." );
+            }
+            const connection = await database.getConnection();
+            await connection.query("INSERT INTO equipos SET ?", datos);
+            return ("Equipos ingresado con exito...");
+        } catch (error) {
+            return ("Error en la consulta.....");
+        }
     }
     //Modificar
-    modificar(id, nuevoNombre){
-        const equipo = equipoDB.find (equipo => equipo.id === id);
-        if (equipo) {
-        equipo.nombre = nuevoNombre;
-        return equipoDB;
+    async modificar(id, equipo){
+        try {
+            if (id === undefined || equipo === undefined) {
+                return ("Datos Incompletos.." );
+            }
+            const datos = {equipo};
+            const connection = await database.getConnection();
+            const result = await connection.query("UPDATE equipos SET nombre_equipo= ? WHERE id_equipo = ?", [equipo,id]);
+            return result;
+        } catch (error) {
+            return ("Error en la consulta.....");
+        }
     }
-    }
+
     //Eliminar
-    eliminar(id){
-        const equipoEliminado = equipoDB.filter (equipo => equipo.id !== id);
-        return equipoEliminado;
+    async eliminar(id){
+        try {
+            const connection = await database.getConnection();
+            const result = await connection.query("DELETE FROM equipos WHERE id_equipo = ?", id);
+            if (result.affectedRows==0){
+                return ("Equipo no Encontrado....");
+            }
+            return result;
+        } catch (error) {
+            return ("Error en la consulta.....");
+        }
     }
-};
+};    
+
 module.exports = new equipoModels();
