@@ -8,6 +8,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var modalidadesRouter = require('./routes/modalidades');
 var categoriasRouter = require('./routes/categorias');
+var integrantesRouter = require('./routes/integrantes');
+var inscritosRouter = require('./routes/inscritos');
 var equiposRouter = require('./routes/equipos');
 var patrocinantesRouter = require('./routes/patrocinantes');
 
@@ -27,6 +29,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/modalidades',modalidadesRouter);
 app.use('/categorias',categoriasRouter);
+app.use('/integrantes',integrantesRouter);
+app.use('/inscritos',inscritosRouter);
 app.use('/equipos',equiposRouter);
 app.use('/patrocinantes',patrocinantesRouter);
 // catch 404 and forward to error handler

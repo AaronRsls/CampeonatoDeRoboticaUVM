@@ -1,4 +1,3 @@
-const { v4: uuidv4 } = require('uuid');
 const database = require("../db/db");
 
 class categoriaModels{
@@ -29,8 +28,6 @@ class categoriaModels{
     //Crear
     async crear(nuevacat){
         try {
-            //const id = uuidv4();
-            //const id=usuario.id;
             const nombre_cat = nuevacat.nombre_cat;
             const id_mod=nuevacat.id_mod;
             const datos ={nombre_cat,id_mod};
@@ -39,7 +36,7 @@ class categoriaModels{
             }
             const connection = await database.getConnection();
             await connection.query("INSERT INTO categorias SET ?", datos);
-            return ("Usuario ingresado con exito...");
+            return ("Categoria ingresada con exito...");
         } catch (error) {
             return ("Error en la consulta.....");
         }

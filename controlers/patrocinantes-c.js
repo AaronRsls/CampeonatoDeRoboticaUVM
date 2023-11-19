@@ -1,20 +1,20 @@
 var patrocinanteModels = require('../models/patrocinantesModels'); 
 
 class patrocinantesController {
-    todos () {
-        return patrocinanteModels.todos();
+    async todos () {
+        return await patrocinanteModels.todos();
     }
-    uno(id) {
-        return patrocinanteModels.buscarID(id);
+    async uno(id) {
+        return await patrocinanteModels.buscarID(id);
     }
-    crear(patrocinante) {
-        patrocinanteModels.crear(patrocinante);
+    async crear(patrocinante) {
+        return await patrocinanteModels.crear(patrocinante);
     }
-    modificar(id, nuevoPatrocinante) {
-        return patrocinanteModels.modificar(id, nuevoPatrocinante);
+    async modificar(id, nuevopatrocinante) {
+        return await patrocinanteModels.modificar(id, nuevopatrocinante);
     }
-    eliminar(id) {
-        return patrocinanteModels.eliminar(id);
+    async eliminar(id) {
+        return await patrocinanteModels.eliminar(id);
     }
 };
 

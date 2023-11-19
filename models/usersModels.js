@@ -1,4 +1,3 @@
-//const { v4: uuidv4 } = require('uuid');
 const database = require("../db/db");
 
 class UsersModels{
@@ -29,8 +28,6 @@ class UsersModels{
     //Crear
     async crear(usuario){
         try {
-            //const id = uuidv4();
-            //const id=usuario.id;
             const nombre = usuario.nombre;
             const datos ={nombre};
             if (nombre === undefined ) {
@@ -49,7 +46,6 @@ class UsersModels{
             if (id === undefined || nuevoNombre === undefined) {
                 return ("Datos Incompletos.." );
             }
-            //const datos = {nuevoNombre};
             const connection = await database.getConnection();
             const result = await connection.query("UPDATE usersdb SET nombre= ? WHERE id = ?", [nuevoNombre,id]);
             return result;

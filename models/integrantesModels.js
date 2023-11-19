@@ -1,4 +1,3 @@
-const { v4: uuidv4 } = require('uuid');
 const database = require("../db/db");
 
 class inscritoModels{
@@ -18,7 +17,7 @@ class inscritoModels{
             const connection = await database.getConnection();
             const result = await connection.query("SELECT inscritos.id_inscrito, equipos.nombre_equipo, categorias.nombre_cat FROM inscritos LEFT JOIN equipos ON inscritos.id_equipo = equipos.id_equipo LEFT JOIN categorias on inscritos.id_cat = categorias.id_cat WHERE inscritos.id_inscrito=?",id);
             if (result.length==0){
-                return ("Inscripcion no Encontrada....");
+                return ("Integrante no Encontrado....");
             }
             return result;
 
@@ -29,15 +28,12 @@ class inscritoModels{
     //Crear
     async crear(nuevoinsc){
         try {
-            //const id = uuidv4();
-            //const id=usuario.id;
-            //const nombre_cat = nuevoinsc.nombre_cat;
             const id_equipo=nuevoinsc.id_equipo;
             const id_cat=nuevoinsc.id_cat;
             const datos ={id_equipo,id_cat};
             const connection = await database.getConnection();
             await connection.query("INSERT INTO inscritos SET ?", datos);
-            return ("Inscripción realizada con exito...");
+            return ("Integrante añadido con exito...");
         } catch (error) {
             return ("Error en la consulta.....");
         }
@@ -63,7 +59,7 @@ class inscritoModels{
             const connection = await database.getConnection();
             const result = await connection.query("DELETE FROM inscritos WHERE id_inscrito = ?", id);
             if (result.affectedRows==0){
-                return ("Inscripcion no Encontrada....");
+                return ("Integrante no Encontrado....");
             }
             return result;
         } catch (error) {

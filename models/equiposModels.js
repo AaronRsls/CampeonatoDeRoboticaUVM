@@ -1,4 +1,3 @@
-const { v4: uuidv4 } = require('uuid');
 const database = require("../db/db");
 
 class equipoModels{
@@ -28,8 +27,6 @@ class equipoModels{
     //Crear
     async crear(nuevoEquipo){
         try {
-            //const id = uuidv4();
-            //const id=nuevaModalidad.id;
             const nombre_equipo = nuevoEquipo.nombre_equipo;
             const datos ={nombre_equipo};
             if (nombre_equipo === undefined ) {
@@ -37,7 +34,7 @@ class equipoModels{
             }
             const connection = await database.getConnection();
             await connection.query("INSERT INTO equipos SET ?", datos);
-            return ("Equipos ingresado con exito...");
+            return ("Equipo ingresado con exito...");
         } catch (error) {
             return ("Error en la consulta.....");
         }

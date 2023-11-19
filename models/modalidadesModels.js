@@ -1,4 +1,3 @@
-const { v4: uuidv4 } = require('uuid');
 const database = require("../db/db");
 
 class modalidadModels{
@@ -28,8 +27,6 @@ class modalidadModels{
     //Crear
     async crear(nuevaModalidad){
         try {
-            //const id = uuidv4();
-            //const id=nuevaModalidad.id;
             const nombre_mod = nuevaModalidad.nombre_mod;
             const datos ={nombre_mod};
             if (nombre_mod === undefined ) {

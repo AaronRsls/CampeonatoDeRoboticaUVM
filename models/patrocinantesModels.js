@@ -1,51 +1,78 @@
-const { v4: uuidv4 } = require('uuid');
+const database = require("../db/db");
 
-let patrocinanteDB = [
-{
-    nombre: "KEL",
-    id: "920",
-},
-{   
-    nombre: "Makroval",
-    id: "128",
-},
-{
-    nombre: "JP Gourmet",
-    id: "51",
-},
-{
-    nombre: "Inpro Andes",
-    id: "251",
-}
-];
 
-class patrocinanteModels{
+//Modelos de patrocinantes enlazados a la Base de Datos con "async"
+class patrocinantesModels{
     //Buscar todos
-    todos(){
-       return patrocinanteDB;
+    async todos(){
+        try{
+            const connection = await database.getConnection();
+            const result = await connection.query("SELECT * from patrocinantes");
+            return result;
+        } catch(error){
+            return ("Error en la consulta.....");
+        }
     }
+
     //Buscar por ID
-    buscarID(id){
-       const patrocinanteid = patrocinanteDB.find (patrocinante => patrocinante.id === id);
-       return patrocinanteid
+    async buscarID(id){
+        try {
+            const connection = await database.getConnection();
+            const result = await connection.query("SELECT * FROM patrocinantes WHERE id_patrocinante = ?", id);
+            if (result.length==0){
+                return ("Patrocinante no Encontrado....");
+            }
+            return result;
+
+        } catch (error) {
+            return ("Error en la consulta.....");
+        }
     }
+
     //Crear
-    crear(patrocinante){
-        patrocinante.id = uuidv4();
-        patrocinanteDB.push(patrocinante)
+    async crear(nuevopatrocinante){
+        try {
+            const nombre_patrocinante = nuevopatrocinante.nombre_patrocinante;
+            const nivel = nuevopatrocinante.nivel;
+            const datos ={nombre_patrocinante,nivel};
+            if (nombre_patrocinante === undefined ) {
+                return ("Nombre requerido..." );
+            }
+            const connection = await database.getConnection();
+            await connection.query("INSERT INTO patrocinantes SET ?", datos);
+            return ("Patrocinante ingresado con exito...");
+        } catch (error) {
+            return ("Error en la consulta.....");
+        }
     }
+
     //Modificar
-    modificar(id, nuevoPatrocinante){
-        const patrocinante = patrocinanteDB.find (patrocinante => patrocinante.id === id);
-        if (patrocinante) {
-        patrocinante.nombre = nuevoPatrocinante;
-        return patrocinanteDB;
+    async modificar(id, nuevoPatrocinante){
+        try {
+            if (id === undefined || nuevoPatrocinante.nombre_patrocinante === undefined || nuevoPatrocinante.nivel===undefined) {
+                return ("Datos Incompletos.." );
+            }
+            const datos = {nuevoPatrocinante};
+            const connection = await database.getConnection();
+            const result = await connection.query("UPDATE patrocinantes SET ? WHERE id_patrocinante=?", [nuevoPatrocinante,id]);
+            return result;
+        } catch (error) {
+            return ("Error en la consulta.....");
+        }
     }
-    }
+
     //Eliminar
-    eliminar(id){
-        const patrocinanteEliminado = patrocinanteDB.filter (patrocinante => patrocinante.id !== id);
-        return patrocinanteEliminado;
+    async eliminar(id){
+        try {
+            const connection = await database.getConnection();
+            const result = await connection.query("DELETE FROM patrocinantes WHERE id_patrocinante = ?", id);
+            if (result.affectedRows==0){
+                return ("Patrocinante no Encontrado....");
+            }
+            return result;
+        } catch (error) {
+            return ("Error en la consulta.....");
+        }
     }
 };
-module.exports = new patrocinanteModels();
+module.exports = new patrocinantesModels();

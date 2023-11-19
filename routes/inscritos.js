@@ -2,27 +2,26 @@ var express = require('express');
 var router = express.Router();
 var inscritosController = require('../controlers/inscritos-c')
 
-/* GET categorias listing. */
+/* GET inscritos */
 router.get('/', async function(req, res, next) {
   res.send(await inscritosController.todos());
 });
 
-/* GET categorias listing by id. */
+/* GET inscritos por id */
 router.get('/:id', async function(req, res, next) {
   let id= req.params.id;
   res.send(await inscritosController.uno(id));
 });
 
-/* POST categorias listing. */
+/* POST inscritos */
 router.post('/', async function(req, res, next) {
     res.send(await inscritosController.crear(req.body));
-  //res.send(inscritosController.todos());
 });
-/* PUT categorias listing. */
+/* PUT inscritos */
 router.put('/:id', async function(req, res, next) {
   res.send(await inscritosController.modificar(req.params.id, req.body));
 });
-/* DELETE categorias listing. */
+/* DELETE inscritos */
 router.delete('/:id', async function(req, res, next) {
   res.send(await inscritosController.eliminar(req.params.id));
 });
