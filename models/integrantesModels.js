@@ -1,11 +1,12 @@
+const { v4: uuidv4 } = require('uuid');
 const database = require("../db/db");
 
-class inscritoModels{
+class integrantesModels{
     //Buscar todos
     async todos(){
         try{
             const connection = await database.getConnection();
-            const result = await connection.query("SELECT inscritos.id_inscrito, equipos.nombre_equipo, categorias.nombre_cat FROM inscritos INNER JOIN equipos ON inscritos.id_equipo = equipos.id_equipo INNER JOIN categorias on inscritos.id_cat=categorias.id_cat");
+            const result = await connection.query("SELECT integrantes.id_integrante, integrantes.nombre_integrante, equipos.nombre_equipo FROM integrantes, equipos WHERE integrantes.id_equipo = equipos.id_equipo");
             return result;
         } catch(error){
             return ("Error en la consulta.....");
@@ -15,7 +16,7 @@ class inscritoModels{
      async buscarID(id){
        try {
             const connection = await database.getConnection();
-            const result = await connection.query("SELECT inscritos.id_inscrito, equipos.nombre_equipo, categorias.nombre_cat FROM inscritos LEFT JOIN equipos ON inscritos.id_equipo = equipos.id_equipo LEFT JOIN categorias on inscritos.id_cat = categorias.id_cat WHERE inscritos.id_inscrito=?",id);
+            const result = await connection.query("SELECT integrantes.id_integrante, integrantes.nombre_integrante, equipos.nombre_equipo FROM integrantes, equipos WHERE integrantes.id_equipo = equipos.id_equipo AND integrantes.id_integrante=?",id);
             if (result.length==0){
                 return ("Integrante no Encontrado....");
             }
@@ -26,27 +27,32 @@ class inscritoModels{
         }
     }
     //Crear
-    async crear(nuevoinsc){
+    async crear(nuevoint){
         try {
-            const id_equipo=nuevoinsc.id_equipo;
-            const id_cat=nuevoinsc.id_cat;
-            const datos ={id_equipo,id_cat};
+            //const id = uuidv4();
+            //const id=usuario.id;
+            const nombre_integrante = nuevoint.nombre_integrante;
+            const id_equipo=nuevoint.id_equipo;
+            const datos ={nombre_integrante,id_equipo};
+            if (nombre_integrante === undefined ) {
+                return ("Nombre requerido..." );
+            }
             const connection = await database.getConnection();
-            await connection.query("INSERT INTO inscritos SET ?", datos);
-            return ("Integrante añadido con exito...");
+            await connection.query("INSERT INTO integrantes SET ?", datos);
+            return ("Integrante ingresado con exito...");
         } catch (error) {
             return ("Error en la consulta.....");
         }
     }
     //Modificar
-    async modificar(id, nuevoins){
+    async modificar(id, nuevoint){
         try {
-            if (id === undefined || nuevoins.id_equipo === undefined || nuevoins.id_cat===undefined) {
+            if (id === undefined || nuevoint.nombre_integrante === undefined || nuevoint.id_equipo===undefined) {
                 return ("Datos Incompletos.." );
             }
-            const datos = {nuevoins};
+            const datos = {nuevoint};
             const connection = await database.getConnection();
-            const result = await connection.query("UPDATE inscritos SET ? WHERE id_inscrito=?", [nuevoins,id]);
+            const result = await connection.query("UPDATE integrantes SET ? WHERE id_integrante=?", [nuevoint,id]);
             return result;
         } catch (error) {
             return ("Error en la consulta.....");
@@ -57,7 +63,7 @@ class inscritoModels{
     async eliminar(id){
         try {
             const connection = await database.getConnection();
-            const result = await connection.query("DELETE FROM inscritos WHERE id_inscrito = ?", id);
+            const result = await connection.query("DELETE FROM integrantes WHERE id_integrante = ?", id);
             if (result.affectedRows==0){
                 return ("Integrante no Encontrado....");
             }
@@ -68,4 +74,4 @@ class inscritoModels{
     }
 };
 
-module.exports = new inscritoModels();
+module.exports = new integrantesModels();
