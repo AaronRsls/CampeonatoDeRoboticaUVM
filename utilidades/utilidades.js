@@ -1,4 +1,5 @@
 const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -13,4 +14,13 @@ const comparar = async (passwordPlain, hashPassword) => {
     return await bcryptjs.compare(passwordPlain, hashPassword)
 };
 
-module.exports = { encriptar, comparar};
+const verificarToken = async (token) => {
+    try {
+        return jwt.verify(token, secreto);
+    } catch (e) {
+        return null
+    }
+}
+
+
+module.exports = { encriptar, comparar, verificarToken};

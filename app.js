@@ -30,12 +30,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', verificarToken, usersRouter);
 app.use('/autorizacion',autorizacionRouter);
-app.use('/modalidades',modalidadesRouter);
+app.use('/modalidades', verificarToken, modalidadesRouter);
 app.use('/categorias',categoriasRouter);
 app.use('/integrantes',integrantesRouter);
 app.use('/inscritos',inscritosRouter);
 app.use('/equipos',equiposRouter);
-app.use('/patrocinantes',patrocinantesRouter);
+app.use('/patrocinantes', verificarToken, patrocinantesRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
