@@ -1,4 +1,5 @@
 const database = require("../db/db");
+const { encriptar, comparar} = require("../utilidades/utilidades");
 
 class UsersModels{
     //Buscar todos
@@ -26,18 +27,23 @@ class UsersModels{
         }
     }
     //Crear
-    async crear(usuario){
+    async crear(usuario1){
         try {
-            const nombre = usuario.nombre;
-            const datos ={nombre};
-            if (nombre === undefined ) {
-                return ("Nombre requerido..." );
-            }
+            const usuario=usuario1.usuario;
             const connection = await database.getConnection();
-            await connection.query("INSERT INTO usersdb SET ?", datos);
-            return ("Usuario ingresado con exito...");
+            const result = await connection.query("SELECT * FROM usersdb WHERE usuario = ?",usuario);
+            if (result.length>0){
+                return ("Usuario ya Existe....");
+            }
+            else{
+                const password = await encriptar(usuario1.password);
+                const rol=usuario1.rol || 1;
+                const datos1 ={usuario,password,rol};
+                await connection.query("INSERT INTO usersdb SET ?", datos1);
+                return ("Usuario ingresado con exito...")
+            }
         } catch (error) {
-            return ("Error en la consulta.....");
+        return ("Error en la consulta.....");
         }
     }
     //Modificar

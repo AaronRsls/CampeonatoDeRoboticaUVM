@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2023 a las 14:46:23
+-- Tiempo de generación: 21-11-2023 a las 23:42:38
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -121,7 +121,8 @@ INSERT INTO `modalidades` (`id_mod`, `nombre_mod`) VALUES
 (2, 'Vehiculos Autonomos'),
 (3, 'Soluciones Industriales'),
 (4, 'Drones'),
-(7, 'Drones_nuevos');
+(7, 'Drones_nuevos'),
+(10, 'kkkkkkkk');
 
 -- --------------------------------------------------------
 
@@ -143,19 +144,34 @@ CREATE TABLE `patrocinantes` (
 
 CREATE TABLE `usersdb` (
   `id` int(30) NOT NULL,
-  `nombre` varchar(50) NOT NULL
+  `usuario` varchar(60) NOT NULL,
+  `password` varchar(60) NOT NULL,
+  `rol` enum('Editor','Admin') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usersdb`
 --
 
-INSERT INTO `usersdb` (`id`, `nombre`) VALUES
-(111, 'Alexander'),
-(222, 'AAaronnn'),
-(333, 'Adrian'),
-(334, 'Drones66'),
-(339, 'Dronespppppp');
+INSERT INTO `usersdb` (`id`, `usuario`, `password`, `rol`) VALUES
+(367, 'Alexander109', '$2a$10$HBGqn6F8a2e0RK0s9k5IHuOTx039BXlccBiCOuEvPUALrnNw9QihC', 'Admin'),
+(368, 'Alexander110', '$2a$10$2pA/NHi2A.A3Bv7hJQMf/eFdjDpJbRXxQWngYoq6DQOLezvhiZ/PC', 'Editor'),
+(369, 'Alexander111', '$2a$10$onhb9QtY1E9lDAYfttUnfO.rmX6ILGYh7wy0NXbbxYJhOd2suu11C', 'Editor'),
+(370, 'Alexander112', '$2a$10$ljcsinG/yILwPIdrytlvdecRMOx2XpW30uCXibckv9oP/PVrjpszq', 'Editor'),
+(371, 'Alexander113', '$2a$10$/Z33hVPsnBByfeFtn4XJAu0yVeALOTqbq1l5uLuKz1b6ZhVvanZEa', 'Editor'),
+(372, 'Alexander114', '$2a$10$TP0XBhoW1hFpe0X4cap0IeVp1YttLonA2b8bgadGy25Xk.0OSuJ0m', 'Admin'),
+(374, 'PedroOlmos', '$2a$10$Bk6Wzyo2TjiFAxgQ6iwz2uq9dCyhEayuCZWNxOrysqdsuzWVoME.S', 'Editor'),
+(375, 'Alberto', '$2a$10$WjJdBE.EdwHzXrRoo1KH2efBMM363hTdghx2cLNlzrUGWrBBbFOW2', 'Editor'),
+(376, 'AlbertoCardozo', '$2a$10$d8g9ZUKfug3DZoYpEDU.But0KzNNmfq7M8HYWq1WY4cyioE26fXVK', 'Admin'),
+(377, 'AlbertoCardozo4', '$2a$10$SnBPcfGY8eXCGgEnrM3wruE8E2NiDhOi.Iy2tqUn/nT682hmyAlfe', 'Editor'),
+(378, 'Yuleny', '$2a$10$hZR6bz6H8fcCpc0H1LGfWO18j29yfIFdAaI8wYGf.PWO6X5WViTJG', 'Editor'),
+(379, 'Eudis', '$2a$10$rB939f/Y3.I226sA3K8dI.0lyqmftgFvW99t4JBs8yOtk/mSPdiYO', 'Editor'),
+(380, 'eudis2', '$2a$10$eadeOHXm4RezwbFKUyj4P.M5vh34yuKex7Vur2tPU8Kae639/WN1y', 'Admin'),
+(381, 'eudis33', '$2a$10$uMdiYRksCzX9/wnaDfWqyu42BzaEssBLzcyTeVh4cZjX9eJqYti0G', 'Admin'),
+(382, 'eudis44', '$2a$10$q7GhuMHzHwuKl8G.cxpOdeV5BHtRn1LQGowK.gNlk.lX9OntTGCKq', 'Editor'),
+(383, 'eudis99', '$2a$10$mpbOIbVZXKZri8h/lBa2m.ojKiR2QbPJR0g4vj8jW1yW0VnDV1CS6', 'Editor'),
+(384, 'eudi133', '$2a$10$gSjAYosu6TvU.5LD2a/Gd.jm4vuBSsyQfiLw9GWiIbbaLKUPtDKTO', 'Editor'),
+(385, 'eudi13388', '$2a$10$tRh7F0E.oAhUJHvLH6RF6.ZKaNSh7UbXXgbJszr5StgHZbw6WwLGG', 'Editor');
 
 --
 -- Índices para tablas volcadas
@@ -206,7 +222,9 @@ ALTER TABLE `patrocinantes`
 -- Indices de la tabla `usersdb`
 --
 ALTER TABLE `usersdb`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `usuario` (`usuario`),
+  ADD UNIQUE KEY `usuario_2` (`usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -240,7 +258,7 @@ ALTER TABLE `integrantes`
 -- AUTO_INCREMENT de la tabla `modalidades`
 --
 ALTER TABLE `modalidades`
-  MODIFY `id_mod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_mod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `patrocinantes`
@@ -252,7 +270,7 @@ ALTER TABLE `patrocinantes`
 -- AUTO_INCREMENT de la tabla `usersdb`
 --
 ALTER TABLE `usersdb`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=340;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=386;
 
 --
 -- Restricciones para tablas volcadas
