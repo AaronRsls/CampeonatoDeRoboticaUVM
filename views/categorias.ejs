@@ -1,0 +1,24 @@
+<%- include('./plantillas/cabecera'); %>
+<div class="container-fluid"></div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Categoría</th>
+        <th scope="col">Modalidad</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% if (arraycategorias.length > 0) { %>
+            <% arraycategorias.forEach(categoria => { %>
+                <tr>
+                    <th scope="row"><%= categoria.id_cat %> </th>
+                    <td><%= categoria.nombre_cat %></td>
+                    <td><%= categoria.nombre_mod %></td>
+                </tr>
+            <% }) %>
+        <% } %>
+    </tbody>
+  </table>
+</div>
+<%- include('./plantillas/pie'); %>

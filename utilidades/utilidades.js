@@ -14,7 +14,7 @@ const comparar = async (passwordPlain, hashPassword) => {
     return await bcryptjs.compare(passwordPlain, hashPassword)
 };
 
-const verificarToken = async (token) => {
+const verificarToken = async (token)=> {
     try {
         return jwt.verify(token, secreto);
     } catch (e) {

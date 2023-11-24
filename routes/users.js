@@ -4,7 +4,7 @@ var usuariosController = require('../controlers/users-c')
 var verificarPermisos = require('../middleware/verificarpermisos');
 
 /* GET users */
-router.get('/', verificarPermisos(['Admin','Editor']), async function(req, res, next) {
+router.get('/', async function(req, res, next) {
   res.send(await usuariosController.todos());
 });
 

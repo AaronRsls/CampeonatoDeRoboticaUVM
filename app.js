@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var verificarToken = require('./middleware/validartoken');
 var autorizacionRouter = require('./routes/autorizacion');
 var usersRouter = require('./routes/users');
 var modalidadesRouter = require('./routes/modalidades');
@@ -25,17 +24,18 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use('/autorizacion', express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', verificarToken, usersRouter);
+app.use('/users', usersRouter);
 app.use('/autorizacion',autorizacionRouter);
-app.use('/modalidades', verificarToken, modalidadesRouter);
-app.use('/categorias',categoriasRouter);
-app.use('/integrantes',integrantesRouter);
-app.use('/inscritos',inscritosRouter);
-app.use('/equipos',equiposRouter);
-app.use('/patrocinantes', verificarToken, patrocinantesRouter);
+app.use('/modalidades', modalidadesRouter);
+app.use('/categorias', categoriasRouter);
+app.use('/integrantes', integrantesRouter);
+app.use('/inscritos', inscritosRouter);
+app.use('/equipos', equiposRouter);
+app.use('/patrocinantes', patrocinantesRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

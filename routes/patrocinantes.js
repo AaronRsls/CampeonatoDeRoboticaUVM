@@ -5,7 +5,8 @@ var verificarPermisos = require('../middleware/verificarpermisos');
 
 /* GET patrocinantes */
 router.get('/', verificarPermisos(['Admin','Editor']), async function(req, res, next) {
-  res.send(await patrocinantesController.todos());
+  //res.send(await patrocinantesController.todos());
+  res.render('patrocinantes', arraypatrocinantes =await patrocinantesController.todos());
 });
 
 /* GET patrocinantes por id */

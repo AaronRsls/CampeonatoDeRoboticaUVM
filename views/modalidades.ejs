@@ -1,0 +1,24 @@
+<%- include('./plantillas/cabecera'); %>
+<div class="container-fluid">
+<div class="row">
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre de Modalidad</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% if (arraymodalidades.length > 0) { %>
+            <% arraymodalidades.forEach(modalidad => { %>
+                <tr>
+                    <th scope="row"><%= modalidad.id_mod %> </th>
+                    <td><%= modalidad.nombre_mod %></td>
+                </tr>
+            <% }) %>
+        <% } %>
+    </tbody>
+  </table>
+</div>
+</div>
+<%- include('./plantillas/pie'); %>

@@ -5,7 +5,8 @@ var verificarPermisos = require('../middleware/verificarpermisos');
 
 /* GET Categorias */
 router.get('/', verificarPermisos(['Admin','Editor']), async function(req, res, next) {
-  res.send(await categoriasController.todos());
+  //res.send(await categoriasController.todos());
+  res.render('categorias',arraycategorias = await categoriasController.todos());
 });
 
 /* GET categorias por id */

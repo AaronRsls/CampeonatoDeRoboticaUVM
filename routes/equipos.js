@@ -4,8 +4,11 @@ var equiposController = require('../controlers/equipos-c')
 var verificarPermisos = require('../middleware/verificarpermisos');
 
 /* GET equipos */
-router.get('/', verificarPermisos(['Admin','Editor']), async function(req, res, next) {
-  res.send(await equiposController.todos());
+router.get('/', verificarPermisos(['Admin','Editor']),async function(req, res, next) {
+  //Para probar con Cliente Rest
+  //  res.send(arrayequipos = await equiposController.todos());
+  //Para probar desde Vistas (views)
+  res.render('equipos',arrayequipos = await equiposController.todos());
 });
 
 /* GET equipos por id */

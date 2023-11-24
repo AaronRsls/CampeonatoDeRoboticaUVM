@@ -1,0 +1,24 @@
+<%- include('./plantillas/cabecera'); %>
+<div class="container-fluid"></div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Equipo</th>
+        <th scope="col">Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% if (arrayinscritos.length > 0) { %>
+            <% arrayinscritos.forEach(inscrito => { %>
+                <tr>
+                    <td><%= inscrito.id_inscrito %> </td>
+                    <td><%= inscrito.nombre_equipo %></td>
+                    <td><%= inscrito.nombre_cat %></td>
+                </tr>
+            <% }) %>
+        <% } %>
+    </tbody>
+  </table>
+</div>
+<%- include('./plantillas/pie'); %>

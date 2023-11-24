@@ -5,7 +5,8 @@ var verificarPermisos = require('../middleware/verificarpermisos');
 
 /* GET modalidades */
 router.get('/', verificarPermisos(['Admin','Editor']), async function(req, res, next) {
-  res.send(await modalidadesController.todos());
+  //res.send(await modalidadesController.todos());
+  res.render('modalidades',arraymodalidades = await modalidadesController.todos());
 });
 
 /* GET modalidades por id. */

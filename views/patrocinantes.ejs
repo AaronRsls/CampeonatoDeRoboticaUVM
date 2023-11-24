@@ -1,0 +1,26 @@
+<%- include('./plantillas/cabecera'); %>
+<div class="container-fluid">
+<div class="row">
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre del Patrocinante</th>
+        <th scope="col">Nivel</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% if (arraypatrocinantes.length > 0) { %>
+            <% arraypatrocinantes.forEach(patrocinante => { %>
+                <tr>
+                    <td><%= patrocinante.id %> </td>
+                    <td><%= patrocinante.nombre %></td>
+                    <td><%= patrocinante.nivel %></td>
+                </tr>
+            <% }) %>
+        <% } %>
+    </tbody>
+  </table>
+</div>
+</div>
+<%- include('./plantillas/pie'); %>

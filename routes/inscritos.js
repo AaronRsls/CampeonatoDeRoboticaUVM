@@ -5,7 +5,8 @@ var verificarPermisos = require('../middleware/verificarpermisos');
 
 /* GET inscritos */
 router.get('/', verificarPermisos(['Admin','Editor']), async function(req, res, next) {
-  res.send(await inscritosController.todos());
+  //res.send(await inscritosController.todos());
+  res.render('inscritos', arrayinscritos= await inscritosController.todos());
 });
 
 /* GET inscritos por id */
