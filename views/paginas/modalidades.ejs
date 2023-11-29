@@ -2,11 +2,13 @@
 <%- include('../plantillas/barranav'); %>
 
 <div class="container">
+  <a href="/modalidad/crear" class="btn btn btn-outline-primary container-fluid p-1 m-1"><small>Agregar</small></a>
   <table class="table table-striped">
     <thead>
       <tr class="border-secondary">
         <th scope="col">Id</th>
         <th scope="col">Nombre de Modalidad</th>
+        <th scope="col">Acción</th>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +17,10 @@
                 <tr>
                     <th scope="row"><%= modalidad.id_mod %> </th>
                     <td><%= modalidad.nombre_mod %></td>
+                    <td>
+                      <a href="modalidad/editar/<%= modalidad.id_mod %>" class="btn btn-outline-info p-0"><small>Editar</small></a>
+                      <a href="modalidad/eliminar/<%= modalidad.id_mod %>" class="btn btn-outline-danger p-0"><small>Eliminar</small></a>                   
+                    </td>
                 </tr>
             <% }) %>
         <% } %>

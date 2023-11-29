@@ -1,0 +1,21 @@
+<%- include('../plantillas/cabecera'); %>
+<%- include('../plantillas/barranav'); %>
+<% if (modalidad) { %>
+    <div class="container mt-4">          
+        <div class="card border-secondary">  
+              <div class="card-header text-danger text-center">Editar Modalidad</div>
+              <div class="card-body">
+                  <form action="/modalidad/modificar/<%= modalidad.id_mod %>" method="POST">
+                       <input id="id_mod" name="id_mod" value="<%= modalidad.id_mod %>" hidden>
+                      <div class="mb-3">
+                        <label for="user" class="form-label">Modalidad</label>
+                        <input type="text" class="form-control" id="nombre_mod" name="nombre_mod" value="<%= modalidad.nombre_mod  %>">                        
+                      </div>   
+                      <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+                      <a href="/" class="btn btn-secondary">Cancelar</a>
+                  </form>      
+              </div>
+          </div>     
+    </div>     
+<% } %>
+<%- include('../plantillas/pie'); %>
