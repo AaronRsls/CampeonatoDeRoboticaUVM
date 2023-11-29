@@ -7,7 +7,7 @@ var logger = require('morgan');
 // Declaraciónn de Rutas 
 var indexRouter = require('./routes/index');
 var autorizacionRouter = require('./routes/autorizacion');
-var modalidadesRouter = require('./routes/modalidades');
+var modalidadesRouter = require('./routes/modalidad');
 var categoriasRouter = require('./routes/categorias');
 var integrantesRouter = require('./routes/integrantes');
 var equiposRouter = require('./routes/equipos');
@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Control de Rutas 
 app.use('/', indexRouter);
 app.use('/autorizacion', autorizacionRouter);
-app.use('/modalidades', modalidadesRouter);
+app.use('/modalidad', modalidadesRouter);
 app.use('/categorias', categoriasRouter);
 app.use('/integrantes', integrantesRouter);
 app.use('/equipos', equiposRouter);

@@ -1,21 +1,18 @@
-var modalidadModels = require('../models/modalidadesModels'); 
+const database = require("../db/db");
 
 class modalidadesController {
-    async todos () {
-        return await modalidadModels.todos();
+   
+    // Metodo encargado de listar Modalidades
+    async todos(req,res) {
+        try{
+            const connection = await database.getConnection();
+            var arraymodalidades = await connection.query("SELECT * from modalidades");
+            res.render('modalidades',{arraymodalidades});
+        } catch(error){
+            res.redirect('/');
+        }
     }
-    async uno(id) {
-        return await modalidadModels.buscarID(id);
-    }
-    async crear(modalidad) {
-        return await modalidadModels.crear(modalidad);
-    }
-    async modificar(id, modalidad) {
-        return await modalidadModels.modificar(id, modalidad);
-    }
-    async eliminar(id) {
-        return await modalidadModels.eliminar(id);
-    }
+
 };
 
 module.exports = new modalidadesController();
