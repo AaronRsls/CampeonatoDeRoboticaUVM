@@ -1,0 +1,18 @@
+<%- include('../plantillas/cabecera'); %>
+<%- include('../plantillas/barranav'); %>
+<div class="container mt-4">
+  <div class="card border-secondary">
+    <div class="card-header bg-primary text-white">Nuevo Equipo</div>
+    <div class="card-body">
+      <form action="/equipos/nuevo/" method="POST">
+        <div class="mb-3">
+          <label for="equipo" class="form-label">Nombre del Equipo</label>
+          <input type="text" class="form-control" id="nombre_equipo" name="nombre_equipo">
+        </div>
+        <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+        <a href="/" class="btn btn-secondary">Cancelar</a>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include('../plantillas/pie'); %>
