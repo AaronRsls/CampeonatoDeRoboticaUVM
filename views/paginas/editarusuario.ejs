@@ -1,0 +1,34 @@
+<%- include('../plantillas/cabecera'); %>
+    <%- include('../plantillas/barranav'); %>
+        <% if (usuario) { %>
+            <div class="container mt-4">
+                <div class="card border-secondary">
+                    <div class="card-header text-danger text-center">Editar Usuario</div>
+                    <div class="card-body">
+                        <form action="/usuarios/modificar/<%= usuario.id %>" method="POST">
+                            <input id="id" name="id" value="<%= usuario.id %>" hidden>
+                            <div class="mb-3">
+                                <label for="usuario" class="form-label">Usuario</label>
+                                <input type="text" class="form-control" id="usuario" name="usuario"
+                                    value="<%= usuario.usuario %>">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password"
+                                    value="<%= usuario.password %>">
+                                <label for="rol" class="form-label">Rol</label>
+                                <select class="form-control" value=1 name="rol" aria-label="Default select example">
+                                    <option value="<%=1%>" selected>"Editor"</option>
+                                    <!-- Bootstrap core CSS 
+                                    <% //listamod.forEach(lista => { %>-->
+                                    <option value=1>"Editor"</option>
+                                    <option value=2>"Admin"</option>
+                                    <% //}) %>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+                            <a href="/" class="btn btn-secondary">Cancelar</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+<% } %>
+<%- include('../plantillas/pie'); %>
