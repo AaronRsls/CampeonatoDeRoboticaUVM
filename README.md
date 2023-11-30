@@ -9,12 +9,7 @@ Pasos para ejecutar correctamente la aplicación del backend:
 * PASSWORD=Contraseña del usuario de MySQL
 
     SECRET=sufrasesecretra
-
-    //tiempo en el que expira el token
-    JWT_TIEMPO_EXPIRA = 7d
-
-    //tiempo en el que expira la cookie
-    JWT_COOKIE_EXPIRES = 90
+    TIEMPOEXPIRA = 1d
 
 2. Ejecutar en una terminal dentro del proyecto el comando "npm i" para instalar todas las dependencias del proyecto.
 
@@ -24,40 +19,13 @@ Pasos para ejecutar correctamente la aplicación del backend:
 
 5. Para ejecutar el servidor se utiliza el comando npm run start.
 
-6. Para ejecutar algunos Endpoints, tenemos dos opciones, una usando un Cliente como por ejemplo: 
+6. Para ejecutar todos los Endpoints, se crearon vistas utilizando el motor de plantillas ejs, con lo cual desde el navegador podemos accesar a todas las opciones
 
-Para usar con el ThunderClient, la ruta quedaria de ésta manera:
+7. Tenemos que Registrarnos como un nuevo usuario, teniendo en cuenta que cada usuario nuevo tiene el privilegio de solo Editor y solo el Administrador podrá modificar el perfil de algun usuario que sea solo Editor para convertirlo en Administrador.
 
-/* GET equipos */
-router.get('/', verificarPermisos(['Admin','Editor']),async function(req, res, next) {
-  //Para probar con Cliente Rest
-  //  res.send(arrayequipos = await equiposController.todos());
-});
-
-Para usar desde el navegador con las vistas, quedaria de ésta manera:
-
-/* GET equipos */
-router.get('/', verificarPermisos(['Admin','Editor']),async function(req, res, next) {
-  //Para probar desde Vistas (views)
-  res.render('equipos',arrayequipos = await equiposController.todos());
-});
-
-7. Usando cualquier método para probar el API tenemos que Registrarnos como un nuevo usuario, teniendo en cuenta que cada usuario nuevo tiene el privilegio de solo Editor y solo el Administrador podrá modificar el perfil de algun usuario que sea solo Editor para convertirlo en Administrador.
-
-#### Sentencia de ejemplos para ejecutar el CRUD, en éste caso, usando la extensión ThunderClient de VSC.
+#### Sentencia para visualizar toda la API desde el navegador.
 
 ```
-http://localhost:3000/users
+http://localhost:3000
 ``` 
 
-```
-http://localhost:3000/modalidades
-``` 
-
-```
-http://localhost:3000/autorizacion/registro
-``` 
-
-```
-http://localhost:3000/autorizacion/login
-``` 

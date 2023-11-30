@@ -20,7 +20,7 @@ class integrantesController {
     async uno(req,res) {
         try {
             const connection = await database.getConnection();
-            const result = await connection.query("SELECT integrantes.id_integrante, integrantes.nombre_integrante, equipos.nombre_equipo FROM integrantes, equipos WHERE integrantes.id_equipo = equipos.id_equipo AND integrantes.id_integrante=?",req.params.id);
+            const result = await connection.query("SELECT integrantes.id_integrante, integrantes.nombre_integrante, equipos.id_equipo, equipos.nombre_equipo FROM integrantes, equipos WHERE integrantes.id_equipo = equipos.id_equipo AND integrantes.id_integrante=?",req.params.id);
             if (result.length==0){
                 res.send("Categoría no Existe....");
             }

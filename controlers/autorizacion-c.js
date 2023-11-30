@@ -26,13 +26,12 @@ class authController {
             const connection = await database.getConnection();
             const result = await connection.query("SELECT * FROM usersdb WHERE usuario = ?", usuario);
             if (result.length === 0) {
-                res.json("Usuario No Existe....");
-                res.redirec('/');
+                res.redirect('/autorizacion/login');
             }
             else {
                 const compara = await comparar(req.body.password, result[0].password);
                 if (!compara) {
-                    res.json("Password Incorrecto ...");
+                    res.send("Password Incorrecto ...");
                 }
                 else{
                     const token = jwt.sign({ id: result[0].id }, secreto, { expiresIn: tiempo })
@@ -41,7 +40,7 @@ class authController {
                 }
             }
         } catch (error) {
-            res.json("Error en la consulta.....");
+            res.send("Error en la consulta.....");
         }
     }
 

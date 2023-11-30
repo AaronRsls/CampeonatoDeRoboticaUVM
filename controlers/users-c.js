@@ -70,7 +70,8 @@ class usuariosController {
             const usuario = req.body.usuario;
             const password = req.body.password;
             const rol = req.body.rol;
-            if (id === undefined || equipo === undefined) {
+            console.log(req.body);
+            if (id === undefined || usuario === undefined) {
                 res.json("Datos Incompletos.." );
             }
             const datos = { usuario, password, rol };
