@@ -1,0 +1,23 @@
+<%- include('../plantillas/cabecera'); %>
+<%- include('../plantillas/barranav'); %>
+<% if (nivel) { %>
+    <div class="container mt-4">          
+        <div class="card border-secondary">  
+              <div class="card-header text-danger text-center">Editar Nivel</div>
+              <div class="card-body">
+                  <form action="/niveles/modificar/<%= nivel.id_nivel %>" method="POST">
+                       <input id="id_nivel" name="id_nivel" value="<%= nivel.id_nivel %>" hidden>
+                      <div class="mb-3">
+                        <label for="user" class="form-label">Nivel</label>
+                        <input type="text" class="form-control" id="nivel" name="nivel" value="<%= nivel.nivel %>">                        
+                        <label for="user" class="form-label">Costo</label>
+                        <input type="number" class="form-control" id="costo" name="costo" value="<%= nivel.costo %>">                        
+                      </div>   
+                      <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+                      <a href="/" class="btn btn-secondary">Cancelar</a>
+                  </form>      
+              </div>
+          </div>     
+    </div>     
+<% } %>
+<%- include('../plantillas/pie'); %>

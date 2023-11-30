@@ -14,6 +14,7 @@ var integrantesRouter = require('./routes/integrantes');
 var equiposRouter = require('./routes/equipos');
 var patrocinantesRouter = require('./routes/patrocinantes');
 var inscritosRouter = require('./routes/inscrito');
+var nivelesRouter = require('./routes/niveles');
 
 var app = express();
 
@@ -40,6 +41,7 @@ app.use('/integrantes', integrantesRouter);
 app.use('/equipos', equiposRouter);
 app.use('/patrocinantes', patrocinantesRouter);
 app.use('/inscrito', inscritosRouter);
+app.use('/niveles',nivelesRouter);
 
 // Manejo de Errores
 app.use(function(req, res) {

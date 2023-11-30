@@ -1,0 +1,20 @@
+<%- include('../plantillas/cabecera'); %>
+<%- include('../plantillas/barranav'); %>
+<div class="container mt-4">
+  <div class="card border-secondary">
+    <div class="card-header bg-primary text-white">Nuevo Nivel</div>
+    <div class="card-body">
+      <form action="/niveles/nuevo/" method="POST">
+        <div class="mb-3">
+          <label for="nivel" class="form-label">Nivel</label>
+          <input type="text" class="form-control" id="nivel" name="nivel">
+          <label for="costo" class="form-label">Costo</label>
+          <input type="text" class="form-control" id="costo" name="costo">
+        </div>
+        <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+        <a href="/" class="btn btn-secondary">Cancelar</a>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include('../plantillas/pie'); %>

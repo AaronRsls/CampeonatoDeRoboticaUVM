@@ -1,0 +1,32 @@
+<%- include('../plantillas/cabecera'); %>
+<%- include('../plantillas/barranav'); %>
+
+<div class="container">
+  <a href="/niveles/crear" class="btn btn btn-outline-primary container-fluid p-1 m-1"><small>Agregar</small></a>
+  <table class="table table-striped">
+    <thead>
+      <tr class="border-secondary">
+        <th scope="col">Id</th>
+        <th scope="col">Nivel</th>
+        <th scope="col">Costo</th>
+        <th scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% if (arrayniveles.length > 0) { %>
+            <% arrayniveles.forEach(nivel => { %>
+                <tr>
+                    <th scope="row"><%= nivel.id_nivel %> </th>
+                    <td><%= nivel.nivel %></td>
+                    <td><%= nivel.costo %></td>
+                    <td>
+                      <a href="niveles/editar/<%= nivel.id_nivel %>" class="btn btn-outline-info p-0"><small>Editar</small></a>
+                      <a href="niveles/eliminar/<%= nivel.id_nivel %>" class="btn btn-outline-danger p-0"><small>Eliminar</small></a>                   
+                    </td>
+                </tr>
+            <% }) %>
+        <% } %>
+    </tbody>
+  </table>
+</div>
+<%- include('../plantillas/pie'); %>
