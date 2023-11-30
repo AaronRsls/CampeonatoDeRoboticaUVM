@@ -13,6 +13,7 @@ var categoriasRouter = require('./routes/categoria');
 var integrantesRouter = require('./routes/integrantes');
 var equiposRouter = require('./routes/equipos');
 var patrocinantesRouter = require('./routes/patrocinantes');
+var inscritosRouter = require('./routes/inscrito');
 
 var app = express();
 
@@ -38,6 +39,7 @@ app.use('/categoria', categoriasRouter);
 app.use('/integrantes', integrantesRouter);
 app.use('/equipos', equiposRouter);
 app.use('/patrocinantes', patrocinantesRouter);
+app.use('/inscrito', inscritosRouter);
 
 // Manejo de Errores
 app.use(function(req, res) {

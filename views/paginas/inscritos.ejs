@@ -1,0 +1,32 @@
+<%- include('../plantillas/cabecera'); %>
+<%- include('../plantillas/barranav'); %>
+
+<div class="container">
+  <a href="/inscrito/crear" class="btn btn btn-outline-primary container-fluid p-1 m-1"><small>Agregar</small></a>
+  <table class="table table-striped">
+    <thead>
+      <tr class="border-secondary">
+        <th scope="col">Id</th>
+        <th scope="col">Equipo</th>
+        <th scope="col">Categoría</th>
+        <th scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% if (arrayinscritos.length > 0) { %>
+            <% arrayinscritos.forEach(inscrito => { %>
+                <tr>
+                    <th scope="row"><%= inscrito.id_inscrito %> </th>
+                    <td><%= inscrito.nombre_equipo %></td>
+                    <td><%= inscrito.nombre_cat %></td>
+                    <td>
+                      <a href="inscrito/editar/<%= inscrito.id_inscrito %>" class="btn btn-outline-info p-0"><small>Editar</small></a>
+                      <a href="inscrito/eliminar/<%= inscrito.id_inscrito %>" class="btn btn-outline-danger p-0"><small>Eliminar</small></a>
+                    </td>
+                </tr>
+            <% }) %>
+        <% } %>
+    </tbody>
+  </table>
+</div>
+<%- include('../plantillas/pie'); %>

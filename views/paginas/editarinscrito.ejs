@@ -1,0 +1,33 @@
+<%- include('../plantillas/cabecera'); %>
+<%- include('../plantillas/barranav'); %>
+<% if (inscrito) { %>
+    <div class="container mt-4">          
+        <div class="card border-secondary">  
+              <div class="card-header text-danger text-center">Editar Inscripción</div>
+              <div class="card-body">
+                  <form action="/inscrito/modificar/<%= inscrito.id_inscrito %>" method="POST">
+                      <input id="id_inscrito" name="id_inscrito" value="<%= inscrito.id_inscrito %>" hidden>
+                      <div class="mb-3">
+                        <label for="categoria" class="form-label">Equipo</label>
+                        <select class="form-control" name="id_equipo" aria-label="Default select example">
+                          <option value="<%=inscrito.id_equipo %>" selected><%=inscrito.nombre_equipo %></option>
+                          <% listaequipos.forEach(lista => { %>
+                            <option value="<%=lista.id_equipo%>"><%=lista.nombre_equipo %></option>
+                           <% }) %>
+                          </select>          
+                        <label for="categoria" class="form-label">Categoría</label>
+                        <select class="form-control" name="id_cat" aria-label="Default select example">
+                        <option value="<%=inscrito.id_cat %>" selected><%=inscrito.nombre_cat %></option>
+                        <% listacat.forEach(lista => { %>
+                          <option value="<%=lista.id_cat%>"><%=lista.nombre_cat %></option>
+                         <% }) %>
+                        </select>          
+                      </div>   
+                      <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+                      <a href="/" class="btn btn-secondary">Cancelar</a>
+                  </form>      
+              </div>
+          </div>     
+    </div>    
+<% } %>
+<%- include('../plantillas/pie'); %>

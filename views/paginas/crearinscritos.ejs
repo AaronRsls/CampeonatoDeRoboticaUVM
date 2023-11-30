@@ -1,0 +1,30 @@
+<%- include('../plantillas/cabecera'); %>
+<%- include('../plantillas/barranav'); %>
+<div class="container mt-4">
+  <div class="card border-secondary">
+    <div class="card-header bg-primary text-white">Nueva Inscripción</div>
+    <div class="card-body">
+      <form action="/inscrito/nuevo/" method="POST">
+        <div class="mb-3">
+          <label for="categoria" class="form-label">Equipo</label>
+          <select class="form-control" name="id_equipo" aria-label="Default select example">
+            <option selected>Equipos disponibles</option>
+            <% listaequipos.forEach(lista => { %>
+              <option value="<%=lista.id_equipo%>"><%=lista.nombre_equipo %></option>
+             <% }) %>
+            </select>          
+          <label for="categoria" class="form-label">Categoría</label>
+          <select class="form-control" name="id_cat" aria-label="Default select example">
+          <option selected>Categoías disponibles</option>
+          <% listacat.forEach(lista => { %>
+            <option value="<%=lista.id_cat%>"><%=lista.nombre_cat %></option>
+           <% }) %>
+          </select>          
+        </div>
+        <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+        <a href="/" class="btn btn-secondary">Cancelar</a>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include('../plantillas/pie'); %>
