@@ -1,0 +1,32 @@
+<%- include('../plantillas/cabecera'); %>
+<%- include('../plantillas/barranav'); %>
+
+<div class="container">
+  <a href="/patrocinantes/crear" class="btn btn btn-outline-primary container-fluid p-1 m-1"><small>Agregar</small></a>
+  <table class="table table-striped">
+    <thead>
+      <tr class="border-secondary">
+        <th scope="col">Id</th>
+        <th scope="col">Nombre del Patrocinante</th>
+        <th scope="col">Nivel</th>
+        <th scope="col">Acción</th>        
+      </tr>
+    </thead>
+    <tbody>
+        <% if (arraypatrocinantes.length > 0) { %>
+            <% arraypatrocinantes.forEach(patrocinante => { %>
+                <tr>
+                    <th scope="row"><%= patrocinante.id %> </th>
+                    <td><%= patrocinante.nombre %></td>
+                    <td><%= patrocinante.nivel %></td>
+                    <td>
+                      <a href="patrocinantes/editar/<%= patrocinante.id %>" class="btn btn-outline-info p-0"><small>Editar</small></a>
+                      <a href="patrocinantes/eliminar/<%= patrocinante.id %>" class="btn btn-outline-danger p-0"><small>Eliminar</small></a>                   
+                    </td>
+                </tr>
+            <% }) %>
+        <% } %>
+    </tbody>
+  </table>
+</div>
+<%- include('../plantillas/pie'); %>

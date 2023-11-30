@@ -1,0 +1,28 @@
+<%- include('../plantillas/cabecera'); %>
+<%- include('../plantillas/barranav'); %>
+<% if (patrocinante) { %>
+    <div class="container mt-4">          
+        <div class="card border-secondary">  
+              <div class="card-header text-danger text-center">Editar Patrocinante</div>
+              <div class="card-body">
+                  <form action="/patrocinantes/modificar/<%= patrocinante.id %>" method="POST">
+                       <input id="id" name="id" value="<%= patrocinante.id %>" hidden>
+                      <div class="mb-3">
+                        <label for="nombre" class="form-label">Patrocinante</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="<%= patrocinante.nombre %>">                        
+                        <label for="nivel" class="form-label">Nivel</label>
+                        <select class="form-control" name="id_nivel" aria-label="Default select example">
+                            <option value="<%=patrocinante.id_nivel %>" selected><%=patrocinante.nivel %></option>
+                            <% listanivel.forEach(lista => { %>
+                              <option value=<%=lista.id_nivel%>><%=lista.nivel %></option>
+                             <% }) %>
+                            </select>          
+                      </div>   
+                      <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+                      <a href="/" class="btn btn-secondary">Cancelar</a>
+                  </form>      
+              </div>
+          </div>     
+    </div>    
+<% } %>
+<%- include('../plantillas/pie'); %>
