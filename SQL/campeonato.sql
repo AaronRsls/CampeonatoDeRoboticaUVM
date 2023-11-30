@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-11-2023 a las 20:11:03
+-- Tiempo de generación: 30-11-2023 a las 05:03:00
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -39,7 +39,8 @@ CREATE TABLE `categorias` (
 
 INSERT INTO `categorias` (`id_cat`, `nombre_cat`, `id_mod`) VALUES
 (4, 'Seguidor de Linea', 2),
-(5, 'Recuperacion de Objetos', 2);
+(5, 'Recuperacion de Objetos', 2),
+(23, 'Nueva Categoria de Ejemplo', 2);
 
 -- --------------------------------------------------------
 
@@ -58,7 +59,8 @@ CREATE TABLE `equipos` (
 
 INSERT INTO `equipos` (`id_equipo`, `nombre_equipo`) VALUES
 (4, 'Valera'),
-(9, 'Timotes');
+(9, 'Timotes'),
+(15, 'EquipoPrueba1');
 
 -- --------------------------------------------------------
 
@@ -78,7 +80,7 @@ CREATE TABLE `inscritos` (
 
 INSERT INTO `inscritos` (`id_inscrito`, `id_equipo`, `id_cat`) VALUES
 (15, 4, 5),
-(16, 9, 4);
+(17, 9, 4);
 
 -- --------------------------------------------------------
 
@@ -97,7 +99,9 @@ CREATE TABLE `integrantes` (
 --
 
 INSERT INTO `integrantes` (`id_integrante`, `nombre_integrante`, `id_equipo`) VALUES
-(5, 'Luis', 4);
+(5, 'Luis', 4),
+(8, 'Ale', 9),
+(10, 'Integrante de Pruevba', 15);
 
 -- --------------------------------------------------------
 
@@ -115,7 +119,7 @@ CREATE TABLE `modalidades` (
 --
 
 INSERT INTO `modalidades` (`id_mod`, `nombre_mod`) VALUES
-(1, 'Batalla de Robots33'),
+(1, 'Batalla de Robots'),
 (2, 'Vehiculos Autonomos'),
 (3, 'Soluciones Industriales');
 
@@ -182,9 +186,12 @@ CREATE TABLE `usersdb` (
 --
 
 INSERT INTO `usersdb` (`id`, `usuario`, `password`, `rol`) VALUES
-(367, 'Alexander', '$2a$10$HBGqn6F8a2e0RK0s9k5IHuOTx039BXlccBiCOuEvPUALrnNw9QihC', 'Admin'),
+(367, 'Alexander', '$2a$10$HBGqn6F8a2e0RK0s9k5IHuOTx039BXlccBiCOuEvPUALrnNw9QihC', 'Editor'),
 (379, 'Eudis', '$2a$10$rB939f/Y3.I226sA3K8dI.0lyqmftgFvW99t4JBs8yOtk/mSPdiYO', 'Editor'),
-(402, 'pablo', '$2a$10$rnphEjb9QF.bYg990Jy1ceFrIn542DDuSmsxBaZDuayHzZr0w1kia', 'Editor');
+(402, 'pablo', '$2a$10$rnphEjb9QF.bYg990Jy1ceFrIn542DDuSmsxBaZDuayHzZr0w1kia', 'Editor'),
+(409, 'AlePrueba2', '$2a$10$SjzD67LoGLvGFX13FTkoKe4H97/2.Ci8Om8vYUnpqj4zx.c5BpuVe', 'Admin'),
+(413, 'Admin', '$2a$10$egSqo4HdwfSrxadbz.QWCOoJBTSpVUDRuWS7wBDoaF5f5vT4G39R6', 'Admin'),
+(415, 'Roberto', '$2a$10$3jxE0hN1.UBKPvd6cT8lc.F85W3m4mTmzAvZJ7ZM0beR4K6ZIGs2S', 'Admin');
 
 --
 -- Índices para tablas volcadas
@@ -253,49 +260,49 @@ ALTER TABLE `usersdb`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `id_equipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_equipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `inscritos`
 --
 ALTER TABLE `inscritos`
-  MODIFY `id_inscrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_inscrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `integrantes`
 --
 ALTER TABLE `integrantes`
-  MODIFY `id_integrante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_integrante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `modalidades`
 --
 ALTER TABLE `modalidades`
-  MODIFY `id_mod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_mod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `nivel`
 --
 ALTER TABLE `nivel`
-  MODIFY `id_nivel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_nivel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `patrocinantes`
 --
 ALTER TABLE `patrocinantes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `usersdb`
 --
 ALTER TABLE `usersdb`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=409;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=418;
 
 --
 -- Restricciones para tablas volcadas
