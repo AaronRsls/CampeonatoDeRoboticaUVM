@@ -1,0 +1,28 @@
+<%- include('../plantillas/cabecera'); %>
+<%- include('../plantillas/barranav'); %>
+<% if (integrante) { %>
+    <div class="container mt-4">          
+        <div class="card border-secondary">  
+              <div class="card-header text-danger text-center">Editar Integrante</div>
+              <div class="card-body">
+                  <form action="/integrantes/modificar/<%= integrante.id_integrante %>" method="POST">
+                      <input id="id_integrante" name="id_integrante" value="<%= integrante.id_integrante %>" hidden>
+                      <div class="mb-3">
+                        <label for="integrante" class="form-label">Integrante</label>
+                        <input type="text" class="form-control" id="nombre_integrante" name="nombre_integrante" value="<%= integrante.nombre_integrante %>">
+                        <label for="equipo" class="form-label">Equipo</label>
+                        <select class="form-control" name="id_equipo" aria-label="Default select example">
+                        <option value="<%=integrante.id_equipo %>" selected><%=integrante.nombre_equipo %></option>
+                        <% listaequipos.forEach(lista => { %>
+                          <option value=<%=lista.id_equipo%>><%=lista.nombre_equipo %></option>
+                         <% }) %>
+                        </select>          
+                      </div>   
+                      <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+                      <a href="/" class="btn btn-secondary">Cancelar</a>
+                  </form>      
+              </div>
+          </div>     
+    </div>    
+<% } %>
+<%- include('../plantillas/pie'); %>

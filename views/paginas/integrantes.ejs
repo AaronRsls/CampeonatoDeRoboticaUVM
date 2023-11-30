@@ -1,0 +1,32 @@
+<%- include('../plantillas/cabecera'); %>
+<%- include('../plantillas/barranav'); %>
+
+<div class="container">
+  <a href="/integrantes/crear" class="btn btn btn-outline-primary container-fluid p-1 m-1"><small>Agregar</small></a>
+  <table class="table table-striped ">
+    <thead>
+      <tr class="border-secondary">
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Equipo</th>
+        <th scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% if (arrayintegrantes.length > 0) { %>
+            <% arrayintegrantes.forEach(integrante => { %>
+                <tr>
+                    <th scope="row"><%= integrante.id_integrante %> </th>
+                    <td><%= integrante.nombre_integrante %></td>
+                    <td><%= integrante.nombre_equipo %></td>
+                    <td>
+                      <a href="integrantes/editar/<%= integrante.id_integrante %>" class="btn btn-outline-info p-0"><small>Editar</small></a>
+                      <a href="integrantes/eliminar/<%= integrante.id_integrante %>" class="btn btn-outline-danger p-0"><small>Eliminar</small></a>                   
+                    </td>
+                </tr>
+            <% }) %>
+        <% } %>
+    </tbody>
+  </table>
+</div>
+<%- include('../plantillas/pie'); %>
