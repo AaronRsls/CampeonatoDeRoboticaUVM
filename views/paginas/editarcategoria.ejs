@@ -1,0 +1,28 @@
+<%- include('../plantillas/cabecera'); %>
+<%- include('../plantillas/barranav'); %>
+<% if (categoria) { %>
+    <div class="container mt-4">          
+        <div class="card border-secondary">  
+              <div class="card-header text-danger text-center">Editar Categoría</div>
+              <div class="card-body">
+                  <form action="/categoria/modificar/<%= categoria.id_cat %>" method="POST">
+                      <input id="id_cat" name="id_cat" value="<%= categoria.id_cat %>" hidden>
+                      <div class="mb-3">
+                        <label for="categoria" class="form-label">Categoría</label>
+                        <input type="text" class="form-control" id="nombre_cat" name="nombre_cat" value="<%= categoria.nombre_cat %>">
+                        <label for="modalidad" class="form-label">Modalidad</label>
+                        <select class="form-control" name="id_mod" aria-label="Default select example">
+                        <option value="<%=categoria.id_mod %>" selected><%=categoria.nombre_mod %></option>
+                        <% listamod.forEach(lista => { %>
+                          <option value=<%=lista.id_mod%>><%=lista.nombre_mod %></option>
+                         <% }) %>
+                        </select>          
+                      </div>   
+                      <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+                      <a href="/" class="btn btn-secondary">Cancelar</a>
+                  </form>      
+              </div>
+          </div>     
+    </div>    
+<% } %>
+<%- include('../plantillas/pie'); %>
